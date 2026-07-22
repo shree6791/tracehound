@@ -1,0 +1,2 @@
+# Optional local secrets for simulation Worker (never commit .dev.vars)
+# SENTRY_DSN=https://<key>@o<org_id>.ingest.sentry.io/<project_id>

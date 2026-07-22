@@ -1,0 +1,32 @@
+name = "tracehound-simulation"
+main = "src/index.py"
+compatibility_date = "2025-11-02"
+compatibility_flags = ["python_workers"]
+
+[[kv_namespaces]]
+binding = "INCIDENTS_KV"
+id = "5e6322a1a545492393e88231b767fc47"
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "tracehound_analytics"
+
+[triggers]
+crons = ["* * * * *"]
+
+# Secrets — npx wrangler secret put SENTRY_DSN (optional but recommended for alarms)
+# Domain constants: edit shared/config.json then npm run sync-config
+
+# Staging — no cron (avoids double-injecting incidents into shared KV/AE).
+# Create a dedicated KV for isolation when ready:
+#   npx wrangler kv namespace create INCIDENTS_KV --env staging
+[env.staging]
+name = "tracehound-simulation-staging"
+
+[[env.staging.kv_namespaces]]
+binding = "INCIDENTS_KV"
+id = "5e6322a1a545492393e88231b767fc47"
+
+[[env.staging.analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "tracehound_analytics"

@@ -1,0 +1,23 @@
+name = "tracehound"
+main = "src/index.ts"
+compatibility_date = "2025-11-02"
+
+# React UI (Vite build)
+[assets]
+directory = "../frontend/dist"
+not_found_handling = "single-page-application"
+
+[vars]
+CF_ACCOUNT_ID = "559f54a62a7698817273ed53a2438672"
+
+# Secrets — npx wrangler secret put <NAME>
+#   ANTHROPIC_API_KEY
+#   CF_ANALYTICS_TOKEN
+
+# Staging — npm run deploy:staging
+# Secrets: npx wrangler secret put <NAME> --env staging
+[env.staging]
+name = "tracehound-staging"
+
+[env.staging.vars]
+CF_ACCOUNT_ID = "559f54a62a7698817273ed53a2438672"

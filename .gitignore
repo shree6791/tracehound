@@ -1,0 +1,15 @@
+node_modules/
+.wrangler/
+dist/
+frontend/dist/
+.dev.vars
+.env
+*.log
+.venv/
+.venv-workers/
+scratch.txt
+app/python_modules/
+simulation/python_modules/
+app/.venv/
+simulation/.venv/
+pylock.toml

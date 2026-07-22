@@ -1,0 +1,4 @@
+# Copy to app/.dev.vars for local wrangler dev (never commit)
+
+ANTHROPIC_API_KEY=sk-ant-...
+CF_ANALYTICS_TOKEN=<cloudflare-api-token-account-analytics-read>

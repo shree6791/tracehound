@@ -1,0 +1,57 @@
+{
+  "_comment": "analyticsColumns lists only fields the agent queries. Full AE write layout (must match simulation/src/infra/analytics_writer.py): blob1=trace_id blob2=span_id blob3=parent_span_id blob4=service blob5=operation blob6=status blob7=error_message double1=duration_ms index1=service. Keys starting with _ are docs-only (ignored by sync-config).",
+  "serviceNames": [
+    "api-gateway",
+    "order-service",
+    "payment-service",
+    "inventory-service"
+  ],
+  "analyticsDataset": "tracehound_analytics",
+  "analyticsColumns": {
+    "service": "blob4",
+    "status": "blob6",
+    "errorMessage": "blob7",
+    "durationMs": "double1"
+  },
+  "serviceLatency": {
+    "api-gateway": { "min": 5, "max": 15 },
+    "order-service": { "min": 10, "max": 30 },
+    "payment-service": { "min": 40, "max": 120 },
+    "inventory-service": { "min": 15, "max": 40 }
+  },
+  "failureParams": {
+    "latency_spike": {
+      "extraLatencyMin": 800,
+      "extraLatencyMax": 1500,
+      "errorRate": 0
+    },
+    "error_burst": {
+      "extraLatencyMin": 0,
+      "extraLatencyMax": 0,
+      "errorRate": 0.4
+    },
+    "cascading_timeout": {
+      "extraLatencyMin": 2000,
+      "extraLatencyMax": 3000,
+      "errorRate": 0.5
+    }
+  },
+  "incident": {
+    "kvKey": "current_incident",
+    "durationMs": 300000,
+    "spawnProbability": 0.2
+  },
+  "syntheticCheckout": {
+    "min": 3,
+    "max": 7
+  },
+  "agent": {
+    "defaultQueryWindowMinutes": 15,
+    "claudeModel": "claude-sonnet-4-6",
+    "anthropicApiUrl": "https://api.anthropic.com/v1/messages",
+    "anthropicVersion": "2023-06-01",
+    "maxIterations": 5,
+    "maxTokens": 2048,
+    "investigateDeadlineMs": 22000
+  }
+}
